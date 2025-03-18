@@ -1,14 +1,11 @@
 import pool from '../config/db';
+import { IProduct } from '../interfaces/ProductIntefaces';
 
 class ProductModel {
   async createProduct(
-    name: string,
-    description: string,
-    summary: string,
-    price: number,
-    tags: string[],
-    images: string[]
+    product:IProduct
   ): Promise<any> {
+    const { name, description, summary, price, tags, images } = product;
     const [result]: any = await pool.execute(
       'INSERT INTO products (name, description, summary, price, tags) VALUES (?, ?, ?, ?, ?)',
       [name, description, summary, price, JSON.stringify(tags)]
