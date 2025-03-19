@@ -12,6 +12,7 @@ class ProductController {
         res.status(400).json({ error: 'Debes subir al menos una imagen' });
         return 
       }
+      
       const productoDto = new ProductDto(req.body,images);
       const { productId } = await ProductModel.createProduct(
        productoDto
